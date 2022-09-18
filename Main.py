@@ -3,7 +3,6 @@ class Node:
     self.data = data
     self.next = None
 
-
 class Queue:
   def __init__(self):
     self.head = None
@@ -19,22 +18,23 @@ class Queue:
         self.last = node
 
   def dequeue(self) -> None:
-    if self.head == self.last:
-        self.head = self.last = None
+    if self.head is not None:
+      self.head = self.head.next
     else:
-        self.head = self.head.next
+      print("Queue is Empty")
 
-    
+    if self.head.next is None:
+      self.head = None
+      self.last = None
 
   def status(self) -> None:
     ptr = self.head
-    while ptr != None:
+    while ptr:
       print(ptr.data,end = "=>")
       ptr = ptr.next
     print("None")
 
 
-# Do not change the following code
 queue = Queue()
 operations = []
 for specific_operation in input().split(','):
